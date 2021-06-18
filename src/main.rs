@@ -50,7 +50,11 @@ fn main() {
     )
     .get_matches();
     
-    let file_name = matches.value_of("file").unwrap_or("sound/tng.wav");
+    let file_name = matches.value_of("file").unwrap_or("");
+    if file_name.is_empty() {
+        println!("No file name provided. Run 'ness_stretch -h' for help.");
+        return;
+    }
     println!("The input file is: {}", file_name);
     
     let dm_in = matches.value_of("mult").unwrap_or("20.0");
