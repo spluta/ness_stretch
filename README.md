@@ -16,6 +16,8 @@ ness_stretch -h
 ```
 for the help.
 
+SuperCollider and python versions of the NessStretch can be found at [https://github.com/spluta/TimeStretch](https://github.com/spluta/TimeStretch).
+
 Implements a phase randomized real fft (using rustfft) time stretch algorithm, the NessStretch, which splits the original sound file into 9 discrete frequency bands, and uses a decreasing frame size to correspond to increasing frequency. Starting with a largest frame of 65536, the algorithm will use the following frequency band/frame size breakdown (assuming 44100 Hz input):
 
 0-86 Hz : 65536 frames,
@@ -29,5 +31,3 @@ Implements a phase randomized real fft (using rustfft) time stretch algorithm, t
 11025-22050 : 256.
 
 The NessStretch is a refinement of [Paul Nasca](http://www.paulnasca.com/)'s excellent [PaulStretch](http://hypermammut.sourceforge.net/paulstretch/) algorithm.  PaulStretch uses a single frame size throughout the entire frequency range.  The NessStretch's layered analysis bands are a better match for human frequency perception, and do a better job of resolving shorter, noisier high-frequency sounds (sibilance, snares, etc.).
-
-SuperCollider and python versions of the NessStretch can be found at [https://github.com/spluta/TimeStretch](https://github.com/spluta/TimeStretch).
