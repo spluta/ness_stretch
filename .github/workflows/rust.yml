@@ -24,7 +24,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: target/release/ness_stretch_linux
+          files: |
+            target/release/ness_stretch_linux
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
