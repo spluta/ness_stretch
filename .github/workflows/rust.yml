@@ -5,6 +5,7 @@ on:
     tags:
       - 'v*.*.*'
       
+      
 env:
   CARGO_TERM_COLOR: always
 
