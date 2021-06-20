@@ -2,8 +2,7 @@ name: Rust
 
 on:
   push:
-    tags:
-    - '*'
+    branches: [ $default-branch ]
       
       
 env:
@@ -21,5 +20,5 @@ jobs:
     - name: Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "target/release/ness_stretch_linux"
+        artifacts: "ness_stretch"
         token: ${{ secrets.GITHUB_TOKEN }}
