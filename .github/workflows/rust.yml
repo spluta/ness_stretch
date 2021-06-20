@@ -5,7 +5,7 @@ on:
     branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
-      
+
 env:
   CARGO_TERM_COLOR: always
 
@@ -17,7 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: cargo build --release
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
     - name: Release
       uses: ncipollo/release-action@v1
       with:
