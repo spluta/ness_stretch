@@ -22,9 +22,6 @@ jobs:
           - os: macos-latest
             artifact_name: ness_stretch
             asset_name: ness_stretch-macos-amd64
-          - os: windows-latest
-            artifact_name: ness_stretch
-            asset_name: ness_stretch-macos-amd64
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -35,6 +32,26 @@ jobs:
         with:
           name: ${{ matrix.asset_name }}
           path: target/release/${{ matrix.artifact_name }}
+  windows:
+    name: Windows
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            artifact_name: ness_stretch
+            asset_name: ness_stretch-windows-amd64
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: cargo build --release --locked
+      - name: Upload binary to release
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.asset_name }}
+          path: D:\a\ness_stretch\${{ matrix.artifact_name }}
+    
 #         path: /home/runner/work/ness_stretch/ness_stretch/target/release/ness_stretch
 #           repo_token: ${{ secrets.GITHUB_TOKEN }}
 #           file: target/release/${{ matrix.artifact_name }}
