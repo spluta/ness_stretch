@@ -28,7 +28,7 @@ jobs:
       - name: Build project
         run: cargo build --release --locked
       - name: 'Tar files'
-        run: tar -czvf ness_stretch.tar.gz -C target/release/ness_stretch .
+        run: tar -czvf ness_stretch.tar.gz -C target/release .
         
       - name: Upload binary to release
         uses: actions/upload-artifact@v2
