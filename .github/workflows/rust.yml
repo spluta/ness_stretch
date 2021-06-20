@@ -26,9 +26,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project
-        run: cargo build --release --locked
+        run: cargo build --release
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "target/release/ness_stretch"
+          target: "ness_stretch"
       - name: 'Tar files'
-        run: tar -czvf ness_stretch.tar.gz -C target/release .
+        run: tar -czvf ness_stretch.tar.gz ness_stretch
         
       - name: Upload binary to release
         uses: actions/upload-artifact@v2
