@@ -33,7 +33,7 @@ jobs:
 #           source: "target/release/ness_stretch"
 #           target: "ness_stretch"
       - name: 'Tar files'
-        run: tar -czvf ness_stretch.tar.gz -C target/release .
+        run: tar -czvf ness_stretch.tar.gz target/release/ness_stretch
         
       - name: Upload binary to release
         uses: actions/upload-artifact@v2
