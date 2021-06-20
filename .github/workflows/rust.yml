@@ -10,16 +10,44 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  release:
+    name: Build and Release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: ness_stretch
+            asset_name: ness_stretch-linux-amd64
+          - os: macos-latest
+            artifact_name: ness_stretch
+            asset_name: ness_stretch-macos-amd64
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --release
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: cargo build --release --locked
+      - name: Upload binary to release
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/release/${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.asset_name }}
+          tag: ${{ github.event.client_payload.new_version }}
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Build
+#       run: cargo build --release
   
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ness_stretch_linux
-        path: /home/runner/work/ness_stretch/ness_stretch/target/release/ness_stretch
+#     - uses: actions/upload-artifact@v2
+#       with:
+#         name: ness_stretch_linux
+#         path: /home/runner/work/ness_stretch/ness_stretch/target/release/ness_stretch
+        
+  
