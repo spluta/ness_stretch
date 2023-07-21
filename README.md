@@ -1,8 +1,8 @@
-# TimeStretch
+# ness_stretch
 
-Python3 version by [Alex Ness](alexness.bandcamp.com) and [Jem Altieri](https://www.jem.space/)
+Algorithm by [Alex Ness](alexness.bandcamp.com) and [Sam Pluta](sampluta.com)
 
-SuperCollider and Rust versions by [Sam Pluta](sampluta.com)
+Rust version by [Sam Pluta](sampluta.com)
 
 Implements a phase randomized Real FFT time stretch algorithm, the NessStretch, which splits the original sound file into 9 discrete frequency bands, and uses a decreasing frame size to correspond to increasing frequency. Starting with a largest frame of 65536, the algorithm will use the following frequency band/frame size breakdown (assuming 44100 Hz input):
 
@@ -26,7 +26,7 @@ See the [ICMC paper](https://github.com/spluta/TimeStretch/blob/main/NessStretch
 
 For an optimized version of the NessStretch, use the command-line Rust version, which can be installed in a couple of different ways:
 
-1) via homebrew (mac only), by running:
+1) via homebrew (mac with apple silicon only), by running:
 
 ```
 brew tap spluta/ness_stretch
@@ -44,29 +44,8 @@ for the help.
 cargo install ness_stretch
 ```
 
-Linux and Windows builds (untested auto builds using GitHub actions) are found here:
+Mac x86, Linux and Windows builds (untested auto builds using GitHub actions) are found here:
 
-https://github.com/spluta/ness_stretch/actions/runs/1087257841
+https://github.com/spluta/ness_stretch/releases/tag/0.2.3
 
-Or download the Rust source and compile using cargo. The rust version will be very fast on Intel Macs and very slow on Arm machines (until rustfft gets updated).
-
-## Python
-
-Requires numpy, scipy, and pandas. Using `virtualenv`:
-
-```
-virtualenv .env
-. .env/bin/activate
-pip install -r requirements.txt
-```
-
-See the Readme inside the python directory for further instructions.
-
-## SuperCollider
-
-The SuperCollider version can be installed by running:
-
-```
-Quarks.install("TimeStretch")
-```
-or downloading the source code and either 1) adding the source code directory to SC's path or placing the source code folder inside the Extensions folder (Platform.systemExtensionDir)
+Or download the Rust source and compile using cargo.
