@@ -1,29 +1,24 @@
 [package]
 name = "ness_stretch"
-version = "0.4.0"
+version = "0.4.3"
 authors = ["Sam Pluta <spluta@gmail.com>", "Alex Ness <asness@gmail.com>"]
 edition = "2018"
-license = "GPLv3"
+license = "GPL-3.0"
+keywords = ["audio", "rustfft", "time stretch"]
+categories = ["multimedia::audio", "multimedia"]
+repository = "https://github.com/spluta/TimeStretch"
+readme = "README.md"
 description = "Implements a phase randomized Real FFT time stretch algorithm, the NessStretch, which splits the original sound file into 1-10 discrete frequency bands, and uses a decreasing frame size to correspond to increasing frequency, thus doing a excellent job of resolving shorter, noisier high-frequency sounds and creating rich, lush low frequency pads."
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 
-# rustfft = "6.0.1"
-# realfft = "3.0.0"#"2.0.1"
-# rand="0.8.0"
-# hound = "3.4.0"
-# chrono = "0.4"
-# clap = "3.1.18" #"2.33.3"
-# bwavfile = "1.1.0" #"0.9.3"
-# crossbeam-utils = "0.8.1"
-
-rustfft = "6.0.1"
-num-complex = "0.4"
-realfft = "2.0.1"
-rand="0.8.5"
+rustfft = "6.1"
+realfft = "3.0.0"
+rand="0.8.0"
 hound = "3.4.0"
 chrono = "0.4"
-clap = "3.2.8"
-bwavfile = "1.1.0"
-crossbeam-utils = "0.8.1"
+clap = { version = "4.3.17", features = ["derive"] }
+bwavfile = "2.0.1"
+crossbeam-utils = "0.8.7"
+klask = "1.0.0"
